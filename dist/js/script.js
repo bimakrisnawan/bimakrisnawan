@@ -1,14 +1,14 @@
 // navbar fixed
-window.onscroll = function(){
+window.onscroll = function () {
     const header = document.querySelector('header');
     const fixexNav = header.offsetTop;
-    const toTop =  document.querySelector('#to-top');
+    const toTop = document.querySelector('#to-top');
 
-    if(window.pageYOffset > fixexNav){
+    if (window.pageYOffset > fixexNav) {
         header.classList.add('navbar-fixed');
         toTop.classList.remove('hidden');
         toTop.classList.add('flex');
-    }else{
+    } else {
         header.classList.remove('navbar-fixed');
         toTop.classList.remove('flex');
         toTop.classList.add('hidden');
@@ -21,17 +21,17 @@ window.onscroll = function(){
 const hamburger = document.querySelector('#hamburger');
 const navMenu = document.querySelector('#nav-menu');
 
-hamburger.addEventListener('click', function(){
+hamburger.addEventListener('click', function () {
     hamburger.classList.toggle('hamburger-active');
     navMenu.classList.toggle('hidden');
-    
+
 });
 
 
 //buat ngehilangin menu
 
-window.addEventListener('click', function(e){
-    if(e.target  !=  hamburger  && e.target != navMenu){
+window.addEventListener('click', function (e) {
+    if (e.target != hamburger && e.target != navMenu) {
         hamburger.classList.remove('hamburger-active');
         navMenu.classList.add('hidden');
     }
@@ -39,13 +39,23 @@ window.addEventListener('click', function(e){
 
 
 //dark mode toggle
-const darkToggle = document.querySelector('dark-toggle');
+const darkToggle = document.querySelector('#dark-toggle');
 const html = document.querySelector('html')
 
-darkToggle.addEventListener('click', function(){
-    if(darkToggle.checked){
+darkToggle.addEventListener('click', function () {
+    if (darkToggle.checked) {
         html.classList.add('dark');
-    }else{
+        localStorage.theme = 'dark';
+    } else {
         html.classList.remove('dark');
+        localStorage.theme = 'light';
     }
 });
+
+//set toggle == mode
+if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia(
+    '(prefers - color - scheme: dark)').matches)) {
+    darkToggle.checked = true;
+} else {
+    darkToggle.checked = false;
+}
