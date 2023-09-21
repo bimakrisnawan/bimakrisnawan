@@ -42,20 +42,33 @@ window.addEventListener('click', function (e) {
 const darkToggle = document.querySelector('#dark-toggle');
 const html = document.querySelector('html')
 
+// inisialisasi gambar buat dark mode
+const gambar = document.getElementById("bima_profil");
+const gambar1Src = "dist/img/bima_new.png";
+const gambar2Src = "dist/img/bima_new_dark.png";
+
+let isGambar1 = true;
+
+
 darkToggle.addEventListener('click', function () {
     if (darkToggle.checked) {
         html.classList.add('dark');
         localStorage.theme = 'dark';
+        gambar.src = gambar2Src;
     } else {
         html.classList.remove('dark');
         localStorage.theme = 'light';
+        gambar.src = gambar1Src;
     }
+    isGambar1 = !isGambar1;
 });
 
 //set toggle == mode
 if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia(
     '(prefers - color - scheme: dark)').matches)) {
     darkToggle.checked = true;
+    gambar.src = gambar2Src;
 } else {
     darkToggle.checked = false;
+    gambar.src = gambar1Src;
 }
