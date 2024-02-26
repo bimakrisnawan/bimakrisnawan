@@ -1,5 +1,5 @@
 module.exports = {
-  content: ['index.html'],
+  content: ['index.html', "./node_modules/tw-elements/dist/js/**/*.js", "./src/**/*.{html,js}",],
   darkMode: 'class',
   theme: {
     container: {
@@ -17,5 +17,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tw-elements/dist/plugin.cjs")],
 }
